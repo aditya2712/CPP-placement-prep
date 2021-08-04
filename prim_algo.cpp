@@ -8,19 +8,24 @@ int main(){
     vector<pair<int, int>> adj[V];
     vector<int> parent(V), key(V);
     vector<bool> mst(V);   
+    
     for(i=0;i<e;i++){
         int u, v, w;
         cin>>w>>u>>v;
         adj[u].push_back({v, w});
         adj[v].push_back({u, w});
     }
+
     cout<<"--------------------------------"<<endl;
+    // initialize each parent to -1, key to INF, mst to false
     for(i=0;i<V;i++){
         parent[i] = -1;
         key[i] = INT_MAX;
         mst[i] = false;
     }
     key[0] = 0;
+
+    // As in a MST only V-1 edges are there hence we will iterate for each edge
     for(int count=0;count<V-1;count++){
         int mini = INT_MAX, u;  
         
