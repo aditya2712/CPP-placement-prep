@@ -17,7 +17,12 @@ bool dfs(int curr, int parent, vector<int> adj[], vector<bool> visited){
 
 bool isCyclic(int V, vector<int> adj[]){
     vector<bool> visited(V, 0);
-    return dfs(0, -1, adj, visited);
+    for(int i=0;i<V;i++){
+        if(!visited[i]){
+            if(dfs(i, -1, adj, visited)) return true;
+        }
+    }
+    return false;
 }
 
 int main(){
